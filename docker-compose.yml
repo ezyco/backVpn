@@ -33,15 +33,15 @@ services:
 
 #mysql:8.0-debian
     ezy_ton_mysql:
-        image: mysql:latest
+        image: mysql:8.0-debian
         container_name: ezy_ton_mysql
         restart: unless-stopped
         command: --max_allowed_packet=512M
         ports:
             - "23462:3306"
         environment:
-            MYSQL_ROOT_USER: root
-            MYSQL_USER: root
+#            MYSQL_ROOT_USER: root
+#            MYSQL_USER: root
             MYSQL_ROOT_PASSWORD: Omid@1380
             MYSQL_DATABASE: ezy_ton_vpn
             MYSQL_PASSWORD: Omid@1380
