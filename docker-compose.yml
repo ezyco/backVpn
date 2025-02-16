@@ -33,9 +33,9 @@ services:
 
 #mysql:8.0-debian
     ezy_ton_mysql:
-        image: mysql8.0.41
+        image: mysql
         container_name: ezy_ton_mysql
-        restart: always
+        restart: unless-stopped
         command: --max_allowed_packet=512M
         ports:
             - "23462:3306"
