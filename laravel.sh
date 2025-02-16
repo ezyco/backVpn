@@ -33,3 +33,10 @@ docker compose up --build --force-recreate -d;
 docker exec ezy_ton_laravel php artisan storage:link;
 systemctl restart docker.service;
 echo "Docker done.";
+
+echo "copy nginx config to site-available.";
+cp ./docker/nginx/backVpn.conf /etc/nginx/sites-available/
+ln -s /etc/nginx/sites-available/backVpn.conf /etc/nginx/sites-enabled/
+systemctl restart nginx;
+nginx -s reload;
+echo "nginx done.";
