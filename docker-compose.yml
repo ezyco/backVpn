@@ -1,4 +1,4 @@
-#name: vpn
+name: vpn
 
 services:
     ezy_ton_laravel:
@@ -6,7 +6,7 @@ services:
             context: .
             dockerfile: Dockerfile
         container_name: ezy_ton_laravel
-        image: ezy_ton_laravel:latest
+        image: vpn-ezy_ton_laravel:latest
         restart: unless-stopped
         volumes:
             - ./:/var/www/html
