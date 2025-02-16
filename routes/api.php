@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ConfigController;
+use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\TonController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,5 +15,8 @@ Route::prefix('ton')->group(function () {
 });
 Route::prefix('configs')->group(function () {
     Route::get('', [ConfigController::class, 'index']);
+});
+Route::prefix('subscriptions')->group(function () {
+    Route::get('', [SubscriptionController::class, 'index']);
 });
 //});
