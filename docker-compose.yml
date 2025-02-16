@@ -37,13 +37,14 @@ services:
         restart: unless-stopped
         command: --max_allowed_packet=512M
         ports:
-            - "3306:3306"
+            - "23452:3306"
         environment:
 #            MYSQL_ROOT_USER: root
             MYSQL_USER: omid
             MYSQL_ROOT_PASSWORD: Omid@1380
             MYSQL_DATABASE: ezy_ton_vpn
             MYSQL_PASSWORD: Omid@1380
+            MYSQL_ROOT_HOST: '%'
         volumes:
             - db:/var/lib/mysql
         networks:
