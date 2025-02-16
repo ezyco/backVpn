@@ -1,0 +1,38 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+env:
+  DEPLOY_SCRIPT: |
+    cd /var/www
+    if [ ! -d "/var/www/back_vpn" ]; then
+       echo "git clone"
+       git clone git@github.com:ezyco/back_vpn.git
+       cd back_vpn
+    else
+      echo "git pull"
+      cd back_vpn && git pull origin
+    fi
+    chmod +x laravel.sh
+    bash laravel.sh
+
+jobs:
+  deploy_US:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Debug SSH Connection
+        run: sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "echo Connected"
+
+      - name: SSH into IR
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port: ${{ secrets.SERVER_PORT }}
+          debug: true
+          script: ${{ env.DEPLOY_SCRIPT }}

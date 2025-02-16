@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\ApiHeaderMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -13,7 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
         apiPrefix: '/api/v1'
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->append(ApiHeaderMiddleware::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

@@ -1,0 +1,6 @@
+# .dockerignore
+node_modules
+.github
+stubs
+vendor
+storage/app/*

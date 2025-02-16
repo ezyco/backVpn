@@ -1,0 +1,8 @@
+0 * * * * docker exec shop_back php artisan backup:run --disable-notifications 2>&1 | /var/www/shop_back/docker/cronjob/timestamp.sh >> /var/www/shop_back/docker/cronjob/logs/databases.txt
+0 * * * * docker exec ezy-laravel-1 php artisan backup:run --disable-notifications 2>&1 | /var/www/ezy_backend/docker/cronjob/timestamp.sh >> /var/www/ezy_backend/docker/cronjob/logs/databases.txt
+0 0 * * * php /var/www/ezy_backend/artisan databases:sync 2>&1 | /var/www/ezy_backend/docker/cronjob/timestamp.sh >> /var/www/ezy_backend/docker/cronjob/logs/databases.txt
+0 0 * * * php /var/www/ezy_backend/artisan storages:sync 2>&1 | /var/www/ezy_backend/docker/cronjob/timestamp.sh >> /var/www/ezy_backend/docker/cronjob/logs/storages.txt
+0 0 * * * php /var/www/ezy_backend/artisan profiles:storage 2>&1 | /var/www/ezy_backend/docker/cronjob/timestamp.sh >> /var/www/ezy_backend/docker/cronjob/logs/profiles.txt
+0 0 * * * docker system prune -af
+0 0 * * * docker builder prune -af
+0 0 * * * docker image prune -af

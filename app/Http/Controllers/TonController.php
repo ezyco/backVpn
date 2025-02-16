@@ -14,12 +14,10 @@ class TonController extends Controller
         $this->tonService = $tonService;
     }
 
-    // Get Wallet Balance
     public function getTransactions(Request $request)
     {
-//        $request->validate(['wallet' => 'required|string']);
+        $request->validate(['wallet' => 'required|string']);
         $balance = $this->tonService->getTransactions($request);
-        dd($balance);
         return response()->json($balance);
     }
     public function getBalance(Request $request)
