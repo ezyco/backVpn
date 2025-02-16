@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\TonController;
 use Illuminate\Support\Facades\Route;
 
+//Route::middleware(['ApiHeaderMiddleware','api','auth'])->group(function () {
 Route::prefix('ton')->group(function () {
     Route::post('auth', [AuthController::class, 'authenticate']);
     Route::get('getTransactions', [TonController::class, 'getTransactions']);
@@ -11,5 +13,6 @@ Route::prefix('ton')->group(function () {
     Route::get('transaction', [TonController::class, 'verifyTransaction']);
 });
 Route::prefix('configs')->group(function () {
-
+    Route::get('', [ConfigController::class, 'index']);
 });
+//});

@@ -11,7 +11,10 @@ class ApiHeaderMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         $request->headers->set('Accept', 'application/json');
+        $request->header('Accept', 'application/json');
         $response = $next($request);
+        $response->headers->set('Accept', 'application/json');
+        $response->header('Accept', 'application/json');
         return $response;
     }
 }

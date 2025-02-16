@@ -1,11 +1,13 @@
 <?php
 
+use App\Models\Subscription;
+use App\Models\User;
+use App\Models\UserSubscription;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('user_subscriptions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId(UserSubscription::user_id)
+                  ->constrained((new User)->getTable())
+                  ->cascadeOnDelete();
+            $table->foreignId(UserSubscription::subscription_id)
+                  ->constrained((new Subscription)->getTable())
+                  ->cascadeOnDelete();
+            $table->float(UserSubscription::size);
             $table->timestamps();
         });
     }
