@@ -40,6 +40,7 @@ services:
         ports:
             - "23462:3306"
         environment:
+            MYSQL_ROOT_USER: root
             MYSQL_USER: root
             MYSQL_ROOT_PASSWORD: Omid@1380
             MYSQL_DATABASE: ezy_ton_vpn
