@@ -24,7 +24,9 @@ php artisan cache:clear;
 php artisan optimize:clear;
 php artisan storage:link;
 #php artisan migrate --force;
+docker exec ezy_ton_laravel php artisan db:wipe --force;
 docker exec ezy_ton_laravel php artisan migrate --force;
+docker exec ezy_ton_laravel php artisan db:seed --force;
 
 echo "Laravel setup completed.";
 

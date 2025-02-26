@@ -183,6 +183,6 @@ class DatabaseSeeder extends Seeder
         foreach ($locations as $location) {
             $a[]=Config::query()->firstOrCreate($location);
         }
-        dd($a);
+//        dd($a);
     }
 }

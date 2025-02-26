@@ -18,8 +18,8 @@ class AuthController extends Controller
     {
         $request->validate([
                                'wallet_address' => 'required|string',
-                               'public_key'     => 'required|string',
-                               'signature'      => 'required|string',
+                               'public_key'     => 'string',
+                               'signature'      => 'string',
                                'message'        => 'string',
                            ]);
 
