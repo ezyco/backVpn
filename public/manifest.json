@@ -2,7 +2,5 @@
     "name": "Ezy VPN",
     "description": "TON Wallet Authentication and Payment",
     "url": "https://backvpn.salimimlk.ir",
-    "icons": [
-        "https://backvpn.salimimlk.ir/icon.png"
-    ]
+    "iconUrl": "https://backvpn.salimimlk.ir/icon.png"
 }
