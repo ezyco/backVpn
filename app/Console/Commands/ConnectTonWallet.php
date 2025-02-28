@@ -26,14 +26,16 @@ class ConnectTonWallet extends Command
 
     public function handle()
     {
+
         $httpClient = new HttpMethodsClient(
             Psr18ClientDiscovery::find(),
             Psr17FactoryDiscovery::findRequestFactory(),
             Psr17FactoryDiscovery::findStreamFactory(),
         );
-        define("PRECONNECT_STORAGE_FILE", storage_path("app/preconnect.json"));
-        define("CONNECTED_INFO_FILE", storage_path("app/connected.json"));
-
+        define("PRECONNECT_STORAGE_FILE", public_path("preconnect.json"));
+        define("CONNECTED_INFO_FILE", public_path("connected.json"));
+        \File::delete(PRECONNECT_STORAGE_FILE);
+        \File::delete(CONNECTED_INFO_FILE);
         if (file_exists(PRECONNECT_STORAGE_FILE) && file_exists(CONNECTED_INFO_FILE)) {
             $this->error("Your wallet is already connected. Run `php artisan ton:send-transaction` example or delete the json files in the storage directory.");
 //            return;
@@ -52,7 +54,7 @@ class ConnectTonWallet extends Command
         // Creating a wallet connection request object
         $connectionRequest = new ConnectRequest(
 //            "https://raw.githubusercontent.com/olifanton/olifanton.github.io/main/tonconnect-manifest.json",
-            "https://backvpn.salimimlk.ir/manifest.json",
+            "https://backvpn.ezyton.com/manifest.json",
             ConnectItem::tonProof($proofData),
         );
 
